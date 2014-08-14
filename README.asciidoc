@@ -1,4 +1,8 @@
-jboss-samples
-=============
-
 JBoss Samples
+-------------
+
+This repo contain samples specific to JBoss, one directory per release.
+
+Java EE 7 samples are at https://github.com/javaee-samples/javaee7-samples.
+
+WildFly samples are at https://github.com/arun-gupta/wildfly-samples.
