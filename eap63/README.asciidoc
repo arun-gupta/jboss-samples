@@ -1,0 +1,6 @@
+To run WebSocket samples on JBoss EAP 6.3, enable NIO protocol as:
+
+~/tools/EAP-6.3.0/jboss-eap-6.3/bin/jboss-cli.sh -c --command="/subsystem=web/connector=http/:write-attribute(name=protocol,value=org.apache.coyote.http11.Http11NioProtocol)"
+{"outcome" => "success"}
+
+
