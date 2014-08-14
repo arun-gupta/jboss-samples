@@ -31,11 +31,11 @@ public class Whiteboard {
     }
 
     @OnMessage
-    public void broadcastSnapshot(ByteBuffer data, Session session) throws IOException {
+    public void broadcastSnapshot(byte[] data, Session session) throws IOException {
         LOGGER.log(Level.INFO, "broadcastBinary: {0}", data);
         for (Session peer : session.getOpenSessions()) {
             if (!peer.equals(session)) {
-                peer.getBasicRemote().sendBinary(data);
+                peer.getBasicRemote().sendBinary(ByteBuffer.wrap(data));
             }
         }
     }

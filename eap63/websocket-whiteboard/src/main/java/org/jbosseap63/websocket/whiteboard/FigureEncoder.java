@@ -16,7 +16,7 @@ public class FigureEncoder implements Encoder.Text<Figure> {
     
     @Override
     public String encode(Figure figure) throws EncodeException {
-        LOGGER.log(Level.INFO, "encoding: {0}", figure);
+        LOGGER.log(Level.CONFIG, "encoding: {0}", figure);
         Gson gson = new Gson();
         return gson.toJson(figure);
     }

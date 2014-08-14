@@ -1,6 +1,7 @@
 package org.jbosseap63.websocket.whiteboard;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.websocket.DecodeException;
@@ -16,14 +17,21 @@ public class FigureDecoder implements Decoder.Text<Figure> {
 
     @Override
     public Figure decode(String json) throws DecodeException {
-        LOGGER.log(Level.INFO, "decoding: {0}", json);
+        LOGGER.log(Level.CONFIG, "decoding: {0}", json);
         Gson gson = new Gson();
         return gson.fromJson(json, Figure.class);
     }
 
     @Override
     public boolean willDecode(String json) {
-        return true;
+        try {
+            Gson gson = new Gson();
+            gson.fromJson(json, Figure.class);
+        
+            return true;
+        } catch (JsonSyntaxException e) {
+            return false;
+        }
     }
 
     @Override
