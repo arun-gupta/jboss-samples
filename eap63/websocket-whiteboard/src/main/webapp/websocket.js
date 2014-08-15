@@ -11,13 +11,14 @@ function sendText(json) {
 }
 
 function sendBinary(bytes) {
-    console.log("sending binary: " + Object.prototype.toString.call(bytes));
+//    console.log("sending binary: " + Object.prototype.toString.call(bytes));
+    console.log("sending binary");
     websocket.send(bytes);
 }
 
 function onMessage(evt) {
     console.log("received: " + evt.data);
-    if (typeof evt.data === "string") {
+    if (typeof evt.data == "string") {
         drawImageText(evt.data);
     } else {
         drawImageBinary(evt.data);

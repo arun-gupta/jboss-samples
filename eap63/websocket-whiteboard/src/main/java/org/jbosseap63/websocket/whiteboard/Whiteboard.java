@@ -6,7 +6,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.websocket.EncodeException;
+import javax.websocket.OnError;
 import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
@@ -20,6 +22,11 @@ public class Whiteboard {
 
     private static final Logger LOGGER = Logger.getLogger(Whiteboard.class.getName());
 
+    @OnOpen
+    public void onOpen(Session s) {
+        LOGGER.log(Level.INFO, s.getId());
+    }
+    
     @OnMessage
     public void broadcastFigure(Figure figure, Session session) throws IOException, EncodeException {
         LOGGER.log(Level.INFO, "broadcastFigure: {0}", figure);
@@ -38,5 +45,10 @@ public class Whiteboard {
                 peer.getBasicRemote().sendBinary(ByteBuffer.wrap(data));
             }
         }
+    }
+    
+    @OnError
+    public void onError(Throwable t) {
+        LOGGER.log(Level.SEVERE, t.getMessage());
     }
 }
