@@ -21,6 +21,7 @@ public class MyEndpointByteArray {
     
     @OnMessage
     public byte[] echoBinary(byte[] data) throws IOException {
+        LOGGER.log(Level.INFO, "echoBinary(byte[])");
         return data;
     }
 }

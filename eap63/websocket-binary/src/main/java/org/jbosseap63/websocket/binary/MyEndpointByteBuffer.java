@@ -22,7 +22,7 @@ public class MyEndpointByteBuffer {
     
     @OnMessage
     public ByteBuffer echoBinary(ByteBuffer data) throws IOException {
-        System.out.println("echoBinary");
+        LOGGER.log(Level.INFO, "echoBinary(ByteBuffer)");
         return data;
     }
 }

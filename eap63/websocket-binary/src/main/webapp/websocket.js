@@ -2,6 +2,7 @@ var wsByteArrayUri = "ws://" + document.location.host + document.location.pathna
 var wsByteBufferUri = "ws://" + document.location.host + document.location.pathname + "bytebuffer";
 
 console.log("Connecting to " + wsByteArrayUri);
+console.log("Connecting to " + wsByteBufferUri);
 
 var websocketByteArray = new WebSocket(wsByteArrayUri);
 var websocketByteBuffer = new WebSocket(wsByteBufferUri);
@@ -28,7 +29,7 @@ function onOpenByteBuffer() {
 }
 
 function echoBinaryByteArray() {
-    var buffer = new ArrayBuffer(myField.value.length);
+    var buffer = new ArrayBuffer(myByteArrayField.value.length);
     var bytes = new Uint8Array(buffer);
     for (var i=0; i<bytes.length; i++) {
         bytes[i] = i;
@@ -38,7 +39,7 @@ function echoBinaryByteArray() {
 }
 
 function echoBinaryByteBuffer() {
-    var buffer = new ArrayBuffer(myField.value.length);
+    var buffer = new ArrayBuffer(myByteBufferField.value.length);
     var bytes = new Uint8Array(buffer);
     for (var i=0; i<bytes.length; i++) {
         bytes[i] = i;

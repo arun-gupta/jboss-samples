@@ -12,12 +12,12 @@
         <form action=""> 
             <h2>Data is sent/received using byte[]</h2>
             <input onclick="echoBinaryByteArray()" value="Echo" type="button"> 
-            <input id="myField" value="12345678" type="text"><br>
+            <input id="myByteArrayField" value="12345678" type="text"><br>
         </form>
         <form action=""> 
             <h2>Data is sent/received using ByteBuffer</h2>
             <input onclick="echoBinaryByteBuffer()" value="Echo" type="button"> 
-            <input id="myField" value="12345678" type="text"><br>
+            <input id="myByteBufferField" value="12345678" type="text"><br>
         </form>
 
         <div id="output"></div>
