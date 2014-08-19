@@ -25,6 +25,7 @@ public class Whiteboard {
     @OnOpen
     public void onOpen(Session s) {
         LOGGER.log(Level.INFO, s.getId());
+        s.setMaxBinaryMessageBufferSize(150*150*4); // the amount is counted based on the canvas size (width*height*number of RGB channels) 
     }
     
     @OnMessage
