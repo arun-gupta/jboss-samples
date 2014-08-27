@@ -32,6 +32,7 @@
 
             </form>
         </div>
+        Node name:</b> <%= System.getProperty("jboss.node.name") %>
         <div id="output"></div>
         <script language="javascript" type="text/javascript" src="websocket.js">
             
