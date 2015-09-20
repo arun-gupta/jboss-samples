@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.websocket.CloseReason;
 
 import javax.websocket.EncodeException;
+import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -24,8 +26,20 @@ public class Whiteboard {
 
     @OnOpen
     public void onOpen(Session s) {
-        LOGGER.log(Level.INFO, s.getId());
+        LOGGER.log(Level.INFO, "MaxTextMessageBufferSize: {0} " + 
+                "MaxBinaryMessageBufferSize: {1} " +
+                "MaxIdleTimeout: {2}", 
+                new Object[]{s.getMaxTextMessageBufferSize(),
+                s.getMaxBinaryMessageBufferSize(),
+                s.getMaxIdleTimeout()});
+        LOGGER.log(Level.INFO, "onOpen: {0}", s.getId());
         s.setMaxBinaryMessageBufferSize(150*150*4); // the amount is counted based on the canvas size (width*height*number of RGB channels) 
+        LOGGER.log(Level.INFO, "MaxTextMessageBufferSize: {0} " + 
+                "MaxBinaryMessageBufferSize: {1} " +
+                "MaxIdleTimeout: {2}", 
+                new Object[]{s.getMaxTextMessageBufferSize(),
+                s.getMaxBinaryMessageBufferSize(),
+                s.getMaxIdleTimeout()});
     }
     
     @OnMessage
@@ -50,6 +64,11 @@ public class Whiteboard {
     
     @OnError
     public void onError(Throwable t) {
-        LOGGER.log(Level.SEVERE, t.getMessage());
+        LOGGER.log(Level.SEVERE, "onError: {0}", t.getMessage());
+    }
+    
+    @OnClose
+    public void onClose(CloseReason c) {
+        LOGGER.log(Level.SEVERE, "onClose: Code: {0}, Reason: {1}", new Object[]{c.getCloseCode(), c.getReasonPhrase()});
     }
 }
